@@ -6,7 +6,7 @@ typedef struct dadoGrafo TDadoGrafoAdjacencia;
 struct dadoGrafo
 {
     unsigned int tam;
-    int **matriz;
+    int *matriz;
     int nVertices;
     int nArestas;
 };
@@ -32,7 +32,7 @@ static void addArestaPonderada(TGrafo *g, unsigned int u, unsigned int v, int pe
 static TDadoGrafoAdjacencia *criarDado(int tam)
 {
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)malloc(sizeof(TDadoGrafoAdjacencia));
-    d->matriz = (int **)calloc(tam * tam, sizeof(int));
+    d->matriz = (int *)calloc(tam * tam, sizeof(int));
     d->tam = tam;
     d->nArestas = 0;
     d->nVertices = 0;

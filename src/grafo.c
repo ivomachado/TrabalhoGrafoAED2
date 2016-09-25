@@ -93,11 +93,17 @@ static int *caminhoMenorDistancia(TGrafo *g, unsigned int s, unsigned dest)
     return caminho;
 }
 
+static void removerAresta(TGrafo *g, unsigned int u, unsigned int v)
+{
+    g->addArestaPonderada(g, u, v, 0);
+}
+
 TGrafo *criarGrafo()
 {
     TGrafo *g = (TGrafo *)malloc(sizeof(TGrafo));
     g->menorDistancia = menorDistancia;
     g->caminhoMenorDistancia = caminhoMenorDistancia;
     g->todasMenoresDistancias = todasMenoresDistancias;
+    g->removerAresta = removerAresta;
     return g;
 }

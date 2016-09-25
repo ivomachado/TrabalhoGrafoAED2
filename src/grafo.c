@@ -68,7 +68,8 @@ static int *caminhoMenorDistancia(TGrafo *g, unsigned int s, unsigned dest)
         i = predecessor[i - 1];
     }
     i = dest;
-    caminho[nArestas--] = -1;
+    caminho[nArestas + 1] = -1;
+    caminho[nArestas--] = dest;
     for (; nArestas >= 0; nArestas--)
     {
         i = caminho[nArestas] = predecessor[i - 1];

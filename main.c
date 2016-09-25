@@ -14,17 +14,11 @@ int main() {
         g->addArestaPonderada(g, a, b, c);
     }
     arestas = g->repeticoesArestasCaminhosMinimos(g);
-    printf("      ");
-    for(i = 1; i <= n; i++) {
-        printf("%5d ", i);
-    }
-    printf("\n");
     for(i = 0; i < n; i++) {
-        printf("%5d ", i + 1);
         for(j = 0; j < n; j++) {
-            printf("%05d ", arestas[n*i + j]);
+            if(arestas[n*i + j] != 0)
+                printf("(%d, %d): %d\n", i + 1, j + 1, arestas[n*i + j]);
         }
-        printf("\n");
     }
     return 0;
 }

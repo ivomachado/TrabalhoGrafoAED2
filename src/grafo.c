@@ -105,6 +105,17 @@ static int *caminhoMenorDistancia(TGrafo *g, int s, int dest)
     return caminho;
 }
 
+static void printarCaminhoMenorDistancia(TGrafo *g, int s, int dest)
+{
+    int *caminho = g->caminhoMenorDistancia(g, s, dest);
+    int k = 0;
+    while(caminho[k + 1] != -1) {
+        printf("%d -> ", caminho[k]);
+        k++;
+    }
+    printf("%d\n", caminho[k]);
+}
+
 static int *repeticoesArestasCaminhosMinimos(TGrafo *g)
 {
     int i, j, k, tam = g->quantidadeVertices(g);
@@ -146,5 +157,6 @@ TGrafo *criarGrafo()
     g->todasMenoresDistancias = todasMenoresDistancias;
     g->removerAresta = removerAresta;
     g->repeticoesArestasCaminhosMinimos = repeticoesArestasCaminhosMinimos;
+    g->printarCaminhoMenorDistancia = printarCaminhoMenorDistancia;
     return g;
 }

@@ -21,6 +21,7 @@ struct grafo
     TDistancia2Vertices valorAresta;
     TDistancia2Vertices menorDistancia;
     TCaminho2Vertices caminhoMenorDistancia;
+    TAddAresta printarCaminhoMenorDistancia;
     TEstaticaGrafo quantidadeVertices;
     TEstaticaGrafo quantidadeArestas;
     TAdjacentes adjacentes;

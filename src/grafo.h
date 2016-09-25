@@ -1,7 +1,8 @@
 typedef struct grafo TGrafo;
 
 typedef short (*TVerificaAdjacencia)(TGrafo *, unsigned int, unsigned int);
-typedef int (*TRelacao2Vertices)(TGrafo *, unsigned int, unsigned int);
+typedef int (*TDistancia2Vertices)(TGrafo *, unsigned int, unsigned int);
+typedef int * (*TCaminho2Vertices)(TGrafo *, unsigned int, unsigned int);
 typedef void (*TAddAresta)(TGrafo *, unsigned int, unsigned int);
 typedef int (*TEstaticaGrafo)(TGrafo *);
 typedef int * (*TAdjacentes)(TGrafo *, unsigned int);
@@ -16,8 +17,9 @@ struct grafo
     TVerificaAdjacencia verificaAdjacencia;
     TAddAresta addAresta;
     TAddArestaPonderada addArestaPonderada;
-    TRelacao2Vertices valorAresta;
-    TRelacao2Vertices menorDistancia;
+    TDistancia2Vertices valorAresta;
+    TDistancia2Vertices menorDistancia;
+    TCaminho2Vertices caminhoMenorDistancia;
     TEstaticaGrafo quantidadeVertices;
     TEstaticaGrafo quantidadeArestas;
     TAdjacentes adjacentes;

@@ -26,51 +26,65 @@ static void addAresta(TGrafo *g, unsigned int u, unsigned int v)
 static void addArestaPonderada(TGrafo *g, unsigned int u, unsigned int v, int peso)
 {
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
-    if(peso != 0) {
-        if(g->valorAresta(g, u, v) == 0) {
+    if (peso != 0)
+    {
+        if (g->valorAresta(g, u, v) == 0)
+        {
             d->nArestas++;
         }
-    } else {
-        if(g->valorAresta(g, u, v) != 0) {
+    }
+    else
+    {
+        if (g->valorAresta(g, u, v) != 0)
+        {
             d->nArestas--;
         }
     }
     d->matriz[(u - 1) * d->nVertices + v - 1] = peso;
 }
 
-static int valorAresta(TGrafo *g, unsigned int u, unsigned int v) {
+static int valorAresta(TGrafo *g, unsigned int u, unsigned int v)
+{
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
     return d->matriz[(u - 1) * d->nVertices + v - 1];
 }
 
-static int quantidadeArestas(TGrafo *g) {
+static int quantidadeArestas(TGrafo *g)
+{
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
     return d->nArestas;
 }
 
-static int quantidadeVertices(TGrafo *g) {
+static int quantidadeVertices(TGrafo *g)
+{
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
     return d->nVertices;
 }
 
-static int quantidadeAdjacentes(TGrafo *g, unsigned int u) {
+static int quantidadeAdjacentes(TGrafo *g, unsigned int u)
+{
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
     int i, nAdjacentes = 0;
-    for(i = 0; i < d->nVertices; i++) {
-        if(d->matriz[(u-1)*d->nVertices + i] != 0) nAdjacentes++;
+    for (i = 0; i < d->nVertices; i++)
+    {
+        if (d->matriz[(u - 1) * d->nVertices + i] != 0)
+            nAdjacentes++;
     }
     return nAdjacentes;
 }
 
-static int * adjacentes(TGrafo *g, unsigned int u) {
+static int *adjacentes(TGrafo *g, unsigned int u)
+{
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
-    int i, *adjacentes = (int*)malloc(d->nVertices*sizeof(int) + 1);
+    int i, *adjacentes = (int *)malloc((d->nVertices + 1) * sizeof(int));
     int k = 0;
-    for(i = 0; i < d->nVertices; i++) {
-        if(d->matriz[(u-1)*d->nVertices + i] != 0) adjacentes[k++] = i + 1;
+    for (i = 0; i < d->nVertices; i++)
+    {
+        if (d->matriz[(u - 1) * d->nVertices + i] != 0)
+            adjacentes[k++] = i + 1;
     }
     adjacentes[k] = -1;
-    return adjacentes; 
+    return adjacentes;
 }
 
 static TDadoGrafoAdjacencia *criarDado(int nVertices)

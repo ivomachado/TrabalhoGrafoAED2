@@ -6,6 +6,7 @@ typedef int * (*TCaminho2Vertices)(TGrafo *, unsigned int, unsigned int);
 typedef void (*TAddAresta)(TGrafo *, unsigned int, unsigned int);
 typedef int (*TEstaticaGrafo)(TGrafo *);
 typedef int * (*TAdjacentes)(TGrafo *, unsigned int);
+typedef int * (*TArestas)(TGrafo *);
 typedef int (*TEstatisticaVertice)(TGrafo *, unsigned int);
 typedef void (*TAddArestaPonderada)(TGrafo *, unsigned int, unsigned int, int);
 
@@ -26,4 +27,5 @@ struct grafo
     TAdjacentes todasMenoresDistancias;
     TAddAresta removerAresta;
     TEstatisticaVertice quantidadeAdjacentes;
+    TArestas repeticoesArestasCaminhosMinimos;
 };

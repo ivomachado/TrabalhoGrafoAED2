@@ -8,13 +8,11 @@ int main() {
     int i, j, *arestas;
     TGrafo *g;
     scanf("%d%d", &n, &m);
-    printf("n: %d, m: %d",n,m);
     g = criarGrafoAdjacencia(n);
     for(i = 0; i < m; i++) {
         scanf("%d %d %d", &a, &b, &c);
         g->addArestaPonderada(g, a, b, c);
     }
-    printf("montou o grafo\n");
     arestas = g->repeticoesArestasCaminhosMinimos(g);
     printf("      ");
     for(i = 1; i <= n; i++) {

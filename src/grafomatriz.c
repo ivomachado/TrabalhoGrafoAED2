@@ -6,24 +6,24 @@ typedef struct dadoGrafo TDadoGrafoAdjacencia;
 struct dadoGrafo
 {
     int *matriz;
-    unsigned int nVertices;
-    unsigned int nArestas;
+    int nVertices;
+    int nArestas;
 };
 
-static short verificaAdjacencia(TGrafo *g, unsigned int u, unsigned int v)
+static short verificaAdjacencia(TGrafo *g, int u, int v)
 {
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
     return d->matriz[(u - 1) * d->nVertices + v - 1] != 0;
 }
 
-static void addAresta(TGrafo *g, unsigned int u, unsigned int v)
+static void addAresta(TGrafo *g, int u, int v)
 {
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
     d->nArestas++;
     d->matriz[(u - 1) * d->nVertices + v - 1] = 1;
 }
 
-static void addArestaPonderada(TGrafo *g, unsigned int u, unsigned int v, int peso)
+static void addArestaPonderada(TGrafo *g, int u, int v, int peso)
 {
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
     if (peso != 0)
@@ -43,7 +43,7 @@ static void addArestaPonderada(TGrafo *g, unsigned int u, unsigned int v, int pe
     d->matriz[(u - 1) * d->nVertices + v - 1] = peso;
 }
 
-static int valorAresta(TGrafo *g, unsigned int u, unsigned int v)
+static int valorAresta(TGrafo *g, int u, int v)
 {
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
     return d->matriz[(u - 1) * d->nVertices + v - 1];
@@ -61,7 +61,7 @@ static int quantidadeVertices(TGrafo *g)
     return d->nVertices;
 }
 
-static int quantidadeAdjacentes(TGrafo *g, unsigned int u)
+static int quantidadeAdjacentes(TGrafo *g, int u)
 {
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
     int i, nAdjacentes = 0;
@@ -73,7 +73,7 @@ static int quantidadeAdjacentes(TGrafo *g, unsigned int u)
     return nAdjacentes;
 }
 
-static int *adjacentes(TGrafo *g, unsigned int u)
+static int *adjacentes(TGrafo *g, int u)
 {
     TDadoGrafoAdjacencia *d = (TDadoGrafoAdjacencia *)g->dado;
     int i, *adjacentes = (int *)malloc((d->nVertices + 1) * sizeof(int));

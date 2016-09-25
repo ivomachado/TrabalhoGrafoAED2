@@ -1,14 +1,14 @@
 typedef struct grafo TGrafo;
 
-typedef short (*TVerificaAdjacencia)(TGrafo *, unsigned int, unsigned int);
-typedef int (*TDistancia2Vertices)(TGrafo *, unsigned int, unsigned int);
-typedef int * (*TCaminho2Vertices)(TGrafo *, unsigned int, unsigned int);
-typedef void (*TAddAresta)(TGrafo *, unsigned int, unsigned int);
+typedef short (*TVerificaAdjacencia)(TGrafo *, int, int);
+typedef int (*TDistancia2Vertices)(TGrafo *, int, int);
+typedef int * (*TCaminho2Vertices)(TGrafo *, int, int);
+typedef void (*TAddAresta)(TGrafo *, int, int);
 typedef int (*TEstaticaGrafo)(TGrafo *);
-typedef int * (*TAdjacentes)(TGrafo *, unsigned int);
+typedef int * (*TAdjacentes)(TGrafo *, int);
 typedef int * (*TArestas)(TGrafo *);
-typedef int (*TEstatisticaVertice)(TGrafo *, unsigned int);
-typedef void (*TAddArestaPonderada)(TGrafo *, unsigned int, unsigned int, int);
+typedef int (*TEstatisticaVertice)(TGrafo *, int);
+typedef void (*TAddArestaPonderada)(TGrafo *, int, int, int);
 
 TGrafo *criarGrafo();
 

@@ -2,6 +2,6 @@
     "version": "0.1.0",
     "command": "mingw32-make",
     "isShellCommand": true,
-    "args": ["menorcaminho"],
+    "args": [""],
     "showOutput": "always"
 }

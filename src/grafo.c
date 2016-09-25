@@ -1,8 +1,9 @@
 #include "grafo.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <limits.h>
 
-static void dijkstra(TGrafo *g, unsigned int s, int *dist, int *predecessor)
+static void dijkstra(TGrafo *g, int s, int *dist, int *predecessor)
 {
     int i, visitados = 0, tam = g->quantidadeVertices(g);
     int *adjacentes;
@@ -43,7 +44,7 @@ static void dijkstra(TGrafo *g, unsigned int s, int *dist, int *predecessor)
     free(visitado);
 }
 
-static int menorDistancia(TGrafo *g, unsigned int s, unsigned int dest)
+static int menorDistancia(TGrafo *g, int s, int dest)
 {
     int *predecessor = (int *)(calloc(g->quantidadeVertices(g), sizeof(int)));
     int *dist = (int *)(calloc(g->quantidadeVertices(g), sizeof(int)));
@@ -55,7 +56,7 @@ static int menorDistancia(TGrafo *g, unsigned int s, unsigned int dest)
     return result;
 }
 
-static int *todasMenoresDistancias(TGrafo *g, unsigned int s)
+static int *todasMenoresDistancias(TGrafo *g, int s)
 {
     int *predecessor = (int *)(calloc(g->quantidadeVertices(g), sizeof(int)));
     int *dist = (int *)(calloc(g->quantidadeVertices(g), sizeof(int)));
@@ -64,7 +65,7 @@ static int *todasMenoresDistancias(TGrafo *g, unsigned int s)
     return dist;
 }
 
-static int *caminhoMenorDistanciaComPredecessor(TGrafo *g, unsigned int s, unsigned int dest, int *predecessor)
+static int *caminhoMenorDistanciaComPredecessor(TGrafo *g, int s, int dest, int *predecessor)
 {
     int *caminho = (int *)malloc((g->quantidadeVertices(g) * sizeof(int)));
     int i = dest, nArestas = 0;
@@ -89,7 +90,7 @@ static int *caminhoMenorDistanciaComPredecessor(TGrafo *g, unsigned int s, unsig
     return caminho;
 }
 
-static int *caminhoMenorDistancia(TGrafo *g, unsigned int s, unsigned dest)
+static int *caminhoMenorDistancia(TGrafo *g, int s, int dest)
 {
     int *predecessor = (int *)(calloc(g->quantidadeVertices(g), sizeof(int)));
     int *dist = (int *)(calloc(g->quantidadeVertices(g), sizeof(int)));
@@ -111,6 +112,7 @@ static int *repeticoesArestasCaminhosMinimos(TGrafo *g)
     for (i = 1; i <= tam; i++)
     {
         dijkstra(g, i, dist, predecessor);
+        printf("calculado os caminhos do vertice %d\n", i);
         for (j = 1; j <= tam; j++)
         {
             caminho = caminhoMenorDistanciaComPredecessor(g, i, j, predecessor);
@@ -128,7 +130,7 @@ static int *repeticoesArestasCaminhosMinimos(TGrafo *g)
     return arestas;
 }
 
-static void removerAresta(TGrafo *g, unsigned int u, unsigned int v)
+static void removerAresta(TGrafo *g, int u, int v)
 {
     g->addArestaPonderada(g, u, v, 0);
 }

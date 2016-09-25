@@ -4,8 +4,8 @@
 
 int main()
 {
-    TGrafo *g = criarGrafoAdjacencia(9);
-    int i, j, k, *caminho;
+    TGrafo *g = criarGrafoAdjacencia(4000);
+    int i, j, k, *caminho, *dist;
     g->addArestaPonderada(g, 1, 2, 5);
     g->addArestaPonderada(g, 1, 4, 10);
     g->addArestaPonderada(g, 1, 8, 10);
@@ -24,9 +24,10 @@ int main()
     g->addArestaPonderada(g, 9, 2, 10);
     for (i = 1; i <= 9; i++)
     {
+        dist = g->todasMenoresDistancias(g, i);
         for (j = 1; j <= 9; j++)
         {
-            printf("Menor distancia de %d ao %d eh %d com caminho:\n", i, j, g->menorDistancia(g, i, j));
+            printf("Menor distancia de %d ao %d eh %d (%d) com caminho:\n", i, j, g->menorDistancia(g, i, j), dist[j - 1]);
             k = 0;
             caminho = g->caminhoMenorDistancia(g, i, j);
             while (caminho[k] != -1)
@@ -37,6 +38,7 @@ int main()
             printf("\n");
             free(caminho);
         }
+        free(dist);
     }
     return 0;
 }

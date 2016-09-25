@@ -23,5 +23,6 @@ struct grafo
     TEstaticaGrafo quantidadeVertices;
     TEstaticaGrafo quantidadeArestas;
     TAdjacentes adjacentes;
+    TAdjacentes todasMenoresDistancias;
     TEstatisticaVertice quantidadeAdjacentes;
 };
